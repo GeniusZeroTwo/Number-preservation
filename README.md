@@ -22,8 +22,7 @@
 
 ## **📸 界面预览 / Screenshots**
 
-*(建议在此处替换为您自己的真实截图)*  
-| **安全登录界面** | **面板主页展示** | | | |
+![image](https://github.com/GeniusZeroTwo/Number-preservation/blob/7519ab70a15dce64f548c1262441710369c5fed1/IMG/%E6%88%AA%E5%B1%8F2026-06-01%2017.56.37.png)
 
 ## **🛠️ 极简部署指南 / Deployment Guide**
 
