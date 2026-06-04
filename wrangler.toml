@@ -1,5 +1,5 @@
 # 这个名字决定了你最终的 API 链接前缀，比如 https://esim-api.你的用户名.workers.dev
-name = "esim-api"
+name = "esim"
 
 # 明确告诉 Cloudflare 我们后端代码的准确路径
 main = "worker/worker.js"
