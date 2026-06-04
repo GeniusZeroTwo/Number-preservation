@@ -7,6 +7,9 @@ main = "worker/worker.js"
 # 更新为最新的兼容性日期，满足 Cloudflare 新版要求
 compatibility_date = "2026-05-31"
 
+# 保留 Cloudflare Dashboard 中手动添加的环境变量和机密，避免 Git 自动部署覆盖
+keep_vars = true
+
 # 新版 Cloudflare (Wrangler v3.109.0+) 强烈建议添加的日志观测配置，消除构建警告
 [observability]
 enabled = true
@@ -18,4 +21,4 @@ crons = ["0 2 * * *"]
 # 自动绑定 KV 数据库
 [[kv_namespaces]]
 binding = "ESIM_DB"
-id = "cb4a488beb794a32b0faf8f6a253ace7"
+id = "YOUR_KV_NAMESPACE_ID"
