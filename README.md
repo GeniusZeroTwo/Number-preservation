@@ -1,4 +1,7 @@
-**5.31 号新增备注 可备注保号要求**
+**6.4**
+
+将储存库数据ip放到了GitHub环境变量里 增强隐私保护重新拉取github代码后他会新增一个cloudflare workers 把之前的删掉就行 数据在kv库 不会丢失。（记得看步骤3和4获取必要数据）
+
 
 **6.3  增加了“已注册平台”记录功能。**
 
@@ -30,6 +33,10 @@
 * 🔄 **一键顺延续期**：发完保号短信后，无需日历推算。点击“一键续期”按钮，系统会自动根据设置的“保号周期（如180天）”顺延生成新的到期日。  
 * 🌍 **智能国旗匹配**：内置全球数十个国家常用区号字典。录入带区号的号码（如 \+44 或 \+1），面板会自动解析并显示对应国旗。
 
+
+**5.31 号新增备注 可备注保号要求**
+
+
 ## **📸 界面预览 / Screenshots**
 
 ![image](https://github.com/GeniusZeroTwo/Number-preservation/blob/7519ab70a15dce64f548c1262441710369c5fed1/IMG/%E6%88%AA%E5%B1%8F2026-06-01%2017.56.37.png)
@@ -54,10 +61,15 @@
 ### **步骤 2：Fork 本仓库并修改配置**
 
 1. 将本项目 **Fork** 到你自己的 GitHub 账号下。  
-2. 在你 Fork 后的仓库中，找到并编辑 wrangler.toml 文件。  
-3. 将最下方的 id \= "..." 替换为你在**步骤 1 复制的真实 KV 数据库 ID**。  
-4. 点击 Commit changes 保存修改。
+请在 GitHub 仓库的 Settings > Secrets and variables > Actions 中添加三个 Repository secrets：KV_NAMESPACE_ID (你的真实 KV ID)、CF_API_TOKEN (Cloudflare API 令牌) 和 CF_ACCOUNT_ID (Cloudflare 账户 ID)。
 
+怎么获取你的 Account ID？
+
+非常简单，登录 Cloudflare 控制台：
+
+    观察浏览器的网址栏，URL 类似这样：https://dash.cloudflare.com/1234567890abcdef1234567890abcdef/...
+
+    紧跟在 dash.cloudflare.com/ 后面的那一长串由字母和数字组成的字符（如 1234567...），就是你的 Account ID。
 ### **步骤 3：在 Cloudflare 部署**
 
 1. 在 Cloudflare 左侧菜单点击 **Workers & Pages** \-\> **Overview**。  

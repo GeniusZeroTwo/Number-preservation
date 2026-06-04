@@ -1,0 +1,28 @@
+name: Deploy eSIM Tracker to Cloudflare
+
+# 这里的 on.push 设定了监听机制：只要 main 分支有任何代码更改推送，就会自动触发构建
+on:
+  push:
+    branches:
+      - main
+  # 允许你在 GitHub 网页端 "Actions" 面板中手动点击按钮触发构建
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 如果你的 wrangler.toml 中使用的是 id = "YOUR_KV_NAMESPACE_ID" 占位符，
+      # 这一步会自动用 GitHub Secrets 里的真实 ID 替换它，防止真实 ID 泄露在代码中
+      - name: Inject KV Namespace ID
+        run: sed -i "s/YOUR_KV_NAMESPACE_ID/${{ secrets.KV_NAMESPACE_ID }}/g" wrangler.toml
+
+      # 执行自动部署到 Cloudflare Workers
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
